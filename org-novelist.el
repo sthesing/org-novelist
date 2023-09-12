@@ -337,6 +337,25 @@ A corresponding language pack must be included with Org Novelist."
   :group 'org-novelist
   :type 'boolean)
 
+(defcustom orgn-user-chapter-notes nil
+  "User defined content of chapter notes."
+  :group 'org-novelist
+  :type 'string)
+
+(defcustom orgn-user-character-notes nil
+  "User defined content of character notes."
+  :group 'org-novelist
+  :type 'string)
+
+(defcustom orgn-user-place-notes nil
+  "User defined content of place notes."
+  :group 'org-novelist
+  :type 'string)
+
+(defcustom orgn-user-prop-notes nil
+  "User defined content of prop notes."
+  :group 'org-novelist
+  :type 'string)
 
 ;;;; String Manipulation Worker Functions
 
@@ -1961,7 +1980,9 @@ with STORY-FOLDER to override that behaviour."
    "* <<notes-for>> \[\[file:<<chapter-file>>\]\[<<chapter-name>>\]\], <<indefinite-article>> "
    "\[\[file:<<chapter-index-file>>\]\[<<chapter>>\]\] <<from>> "
    "\[\[file:<<main-file>>\]\[<<story-name>>\]\].\n"
-   "<<chapter-notes-content>>")
+   (if orgn-user-chapter-notes
+       orgn-user-chapter-notes
+     "<<chapter-notes-content>>"))
   "The template for the story's chapter notes files.")
 
 (defconst orgn--character-notes-template
@@ -1971,7 +1992,9 @@ with STORY-FOLDER to override that behaviour."
    "* <<notes-for>> /<<character-name>>/, <<indefinite-article>> "
    "\[\[file:<<character-index-file>>\]\[<<character>>\]\] <<from>> "
    "\[\[file:<<main-file>>\]\[<<story-name>>\]\].\n"
-   "<<character-notes-content>>")
+   (if orgn-user-character-notes
+       orgn-user-character-notes
+     "<<character-notes-content>>"))
   "The template for the story's character notes files.")
 
 (defconst orgn--prop-notes-template
@@ -1981,7 +2004,9 @@ with STORY-FOLDER to override that behaviour."
    "* <<notes-for>> /<<prop-name>>/, <<indefinite-article>> "
    "\[\[file:<<prop-index-file>>\]\[<<prop>>\]\] <<from>> "
    "\[\[file:<<main-file>>\]\[<<story-name>>\]\].\n"
-   "<<prop-notes-content>>")
+   (if orgn-user-prop-notes
+       orgn-user-prop-notes
+     "<<prop-notes-content>>"))
   "The template for the story's prop notes files.")
 
 (defconst orgn--place-notes-template
@@ -1991,7 +2016,9 @@ with STORY-FOLDER to override that behaviour."
    "* <<notes-for>> /<<place-name>>/, <<indefinite-article>> "
    "\[\[file:<<place-index-file>>\]\[<<place>>\]\] <<from>> "
    "\[\[file:<<main-file>>\]\[<<story-name>>\]\].\n"
-   "<<place-notes-content>>")
+   (if orgn-user-place-notes
+       orgn-user-place-notes
+     "<<place-notes-content>>"))
   "The template for the story's place notes files.")
 
 (defconst orgn--glossary-template
